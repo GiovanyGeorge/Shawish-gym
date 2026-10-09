@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shawish-bg: #0a0d10;
+  --color-shawish-surface: #12161b;
+  --color-shawish-surface-elevated: #1a2028;
+  --color-shawish-border: #2a313c;
+  --color-shawish-orange: #ff7a00;
+  --color-shawish-orange-hover: #ff8f26;
+  --color-shawish-orange-muted: rgb(255 122 0 / 0.15);
+  --color-shawish-yellow: #f5b942;
+  --color-shawish-text: #f4f6f8;
+  --color-shawish-muted: #9aa3af;
+  --color-shawish-success: #22c55e;
+  --color-shawish-danger: #ef4444;
+  --color-shawish-warning: #f59e0b;
+  --color-shawish-info: #64748b;
+
+  --font-sans: "Segoe UI", Inter, system-ui, sans-serif;
+
+  --radius-shawish: 0.5rem;
+  --radius-shawish-lg: 0.75rem;
+
+  --ease-shawish: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-shawish: 200ms;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-shawish-bg);
+    color: var(--color-shawish-text);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: var(--color-shawish-orange-muted);
+    color: var(--color-shawish-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-shawish-orange);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .shawish-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-shawish-border) transparent;
+  }
+
+  .shawish-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .shawish-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-shawish-border);
+    border-radius: 999px;
+  }
+
+  .page-enter {
+    animation: page-enter var(--duration-shawish) var(--ease-shawish) both;
+  }
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .app-drag {
+    -webkit-app-region: drag;
+    app-region: drag;
+  }
+
+  .app-no-drag {
+    -webkit-app-region: no-drag;
+    app-region: no-drag;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-enter {
+      animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
